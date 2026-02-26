@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  falkordb:
+    image: falkordb/falkordb:latest          # or :edge if you want most recent features
+    # image: falkordb/falkordb-server:latest  # ← lighter / production style (no browser)
+    
+    container_name: falkordb-local
+    
+    ports:
+      - "6379:6379"     # Redis / FalkorDB protocol
+      - "3000:3000"     # FalkorDB Browser UI (http://localhost:3000)
+    
+    environment:
+      # Strongly recommended – set at least a basic password
+      REDIS_ARGS: --requirepass myfalkordb2026 --save 60 5 --loglevel notice
+      
+      # Optional tuning examples (uncomment if needed)
+      # FALKORDB_ARGS: THREAD_COUNT 6 CACHE_SIZE 512
+      
+      # Optional: expose experimental BOLT protocol (Neo4j-like)
+      # FALKORDB_ARGS: BOLT_PORT 7687
+      # ports: add - "7687:7687" if you use BOLT
+
+    volumes:
+      - falkordb-data:/var/lib/falkordb/data
+      # Optional: also persist logs if you want
+      # - ./logs:/var/log/redis
+
+    restart: unless-stopped
+    # For pure desktop testing you can also use: restart: always
+
+    # Optional: give it more memory if you plan larger graphs
+    # mem_limit: 4g
+    # cpus: 2.0
+
+volumes:
+  falkordb-data:
+    name: falkordb_local_data
