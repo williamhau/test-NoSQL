@@ -10,7 +10,7 @@ docker compose -f docker-falkorDB-compose.yml logs -f
 #    (if you set a password → use it when connecting)
 
 # 4. Connect with redis-cli (with password)
-redis-cli -p 6379 -a myfalkordb2026
+redis-cli -p 6379 -a ${FALKORDB_PASSWORD} 
 
 # Inside redis-cli you can immediately start using graph commands:
 GRAPH.QUERY mygraph "CREATE (:Person {name: 'William'})-[:KNOWS]->(:Person {name: 'Grok'})"

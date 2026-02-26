@@ -26,7 +26,7 @@ This project ingests financial data (companies, sectors) into a Neo4j graph data
 
 ```bash
 git clone <your-repo-url>
-cd testNoSQL
+cd test-NoSQL
 ```
 
 ### 2. Configure Environment Variables

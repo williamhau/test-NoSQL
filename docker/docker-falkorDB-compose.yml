@@ -13,7 +13,7 @@ services:
     
     environment:
       # Strongly recommended – set at least a basic password
-      REDIS_ARGS: --requirepass myfalkordb2026 --save 60 5 --loglevel notice
+      REDIS_ARGS: --requirepass ${FALKORDB_PASSWORD} --save 60 5 --loglevel notice
       
       # Optional tuning examples (uncomment if needed)
       # FALKORDB_ARGS: THREAD_COUNT 6 CACHE_SIZE 512
