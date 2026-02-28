@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -a
+source ../.env
+set +a
+
 # TimescaleDB
 # 1. Start in background
 docker  compose -f docker-timescaledb-compose.yml up -d
